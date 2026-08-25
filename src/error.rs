@@ -25,6 +25,18 @@ pub enum Error {
     /// 底层 IO 失败。`#[from]` 让 `?` 能把 [`std::io::Error`] 直接转过来。
     #[error("IO 操作失败")]
     Io(#[from] std::io::Error),
+
+    #[error("向量长度不匹配: {a} vs {b}")]
+    DotProductLengthMismatch { a: usize, b: usize },
+
+    #[error("矩阵形状不匹配：左矩阵 {a_col} 列，右矩阵 {b_row} 行")]
+    MatrixShapeMismatch { a_col: usize, b_row: usize },
+
+    #[error("worker 线程在返回结果前退出")]
+    WorkerGone,
+
+    #[error("未注册的指标 key：{0}")]
+    UnknownMetric(String),
 }
 
 /// 带默认错误类型的 `Result` 别名。

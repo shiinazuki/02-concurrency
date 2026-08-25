@@ -7,6 +7,13 @@
 //! doctest 都够不着，逻辑留在那边就只能靠手工跑一遍程序来验证。
 
 mod error;
+mod matrix;
+mod metrics;
+mod vector;
+
+pub use matrix::{Matrix, multiply};
+pub use metrics::{AtomicMetrics, LockedMetrics, ShardedMetrics};
+pub use vector::{Vector, dot_product};
 
 pub use crate::error::{Error, Result};
 

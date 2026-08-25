@@ -56,7 +56,14 @@ authors = ["shiinazuki <shiinazuki@gmail.com>"]
 #    「TOML 文件里的 liquid 标签必须锚在注释行」。
 [workspace.dependencies]
 # 这里是版本目录：成员写 `foo = { workspace = true }` 引用后才真正生效
-tokio = { version = "1", features = ["rt-multi-thread", "macros"] }
+tokio = { version = "1", features = [
+  "rt-multi-thread",
+  "macros",
+  "time",
+  "net",
+  "io-util",
+  "signal",
+] }
 # tokio 的 feature 在此统一收口，子 crate 不要各自再开
 tracing = "0.1"
 tracing-subscriber = { version = "0.3", features = ["env-filter"] }
@@ -65,6 +72,8 @@ thiserror = "2"
 # thiserror 只在编译期展开成 impl，不会给运行时增加负担
 anyhow = "1"
 # anyhow 只给应用层用；库对外暴露它等于剥夺了调用方分类处理错误的能力，见 src/error.rs
+rand = "0.10"
+oneshot = { version = "0.2", features = ["std"] }
 
 [package]
 name = "concurrency"
@@ -135,6 +144,8 @@ thiserror = { workspace = true }
 # 领域错误类型见 src/error.rs
 anyhow = { workspace = true }
 # main 用它收口，配合 .context() 补充上下文
+rand = { workspace = true }
+oneshot = { workspace = true }
 
 [dev-dependencies]
 # 只在测试 / benchmark / example 里用到的依赖放这里，不会进使用者的依赖树。
