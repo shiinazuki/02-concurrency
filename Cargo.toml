@@ -312,7 +312,7 @@ unwrap_used = "warn" # 不要随手 unwrap，改用 ? 或 expect("说明为什�
 dbg_macro = "warn" # 调试用的 dbg! 不要带进提交
 todo = "warn"
 mem_forget = "deny"
-# 统一模块布局：用 foo.rs + foo/ 而不是 foo/mod.rs，免得一个仓库里两种风格混着来
+# 统一模块布局：用 foo/mod.rs 而不是 foo.rs + foo/
 self_named_module_files = "warn"
 # 已经是 &str 还 .to_string()：写 .to_owned() 意图更清楚，也少一次格式化机器的开销
 str_to_string = "warn"
